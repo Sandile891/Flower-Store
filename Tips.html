@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flower Care Tips</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: serif;
+            background-color: #f5f5f5;
+            color: #333;
+            padding: 20px;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        h1 {
+            text-align: center;
+            color: #37432b;
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: serif;
+            background-color: #f5f5f5;
+            color: #333;
+            padding: 20px;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        @keyframes slideDown {
+            0% {
+                transform: translateY(-50px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .header-container h2 {
+            font-size: 1.5rem;
+            margin: 10px 0;
+            font-weight: lighter;
+            letter-spacing: 1px;
+        }
+
+        .navigation-links {
+            margin-top: 10px;
+        }
+
+        .navigation-links a {
+            text-decoration: none;
+            color: #37432b;
+            font-size: 1.2rem;
+            margin: 0 15px;
+            transition: color 0.3s ease;
+        }
+
+        .navigation-links a:hover {
+            color: #fff;
+            font-weight: bold;
+        }
+
+        /* Home Button */
+        .home-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: #37432b;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .home-button:hover {
+            background-color: #f6cefc;
+            color: #37432b;
+            transform: scale(1.1);
+        }
+
+        /* Flower Cards Section */
+        .tips-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .flower-card {
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            max-width: 90%;
+            width: 100%;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .flower-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .flower-card img {
+            width: 120px;
+            height: auto;
+            border-radius: 10px;
+            margin-right: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .flower-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .flower-info {
+            flex-grow: 1;
+        }
+
+        .flower-info h2 {
+            color: #37432b;
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+            text-transform: capitalize;
+        }
+
+        .flower-info p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #37432b;
+            color: white;
+            text-align: center;
+            padding: 12px 20px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            font-size: 0.9rem;
+        }
+
+        /* Mobile Optimization */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            .home-button {
+                top: 10px;
+                left: 10px;
+                font-size: 1rem;
+                padding: 8px 15px;
+            }
+
+            .flower-card {
+                flex-direction: column;
+                padding: 10px;
+            }
+
+            .flower-card img {
+                width: 100px;
+                margin-bottom: 15px;
+            }
+
+            .flower-info h2 {
+                font-size: 1.4rem;
+            }
+
+            footer {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header Section -->
+    <div class="header-container">
+        <h1>Flower Care Tips</h1>
+        <div class="navigation-links">
+            <a href="index.html">Home</a> |
+            <a href="Chat with us.html">Contact Us</a>
+        </div>
+        <h2>Explore how to keep your flowers blooming beautifully!</h2>
+    </div>
+
+    <!-- Flower Care Tips Cards -->
+    <div class="tips-container">
+        <!-- Flower Card: Roses -->
+        <div class="flower-card">
+            <img src="roses.jpg" alt="Roses">
+            <div class="flower-info">
+                <h2>Roses</h2>
+                <p><b>How to Care:</b> Change the water every two days. Keep them in a cool area away from direct sunlight.</p>
+                <p><b>What Not to Do:</b> Avoid placing roses near fresh fruits; the ethylene gas can cause them to wilt faster.</p>
+                <p><b>How Long They Last:</b> Approximately 5-7 days.</p>
+            </div>
+        </div>
+
+        <!-- Flower Card: White Orchid -->
+        <div class="flower-card">
+            <img src="lil.jpg" alt="White Orchid">
+            <div class="flower-info">
+                <h2>White Orchid</h2>
+                <p><b>How to Care:</b> Place Orchid in cold water, and do not fill the vase completely. Keep them in a cool room.</p>
+                <p><b>What Not to Do:</b> Don't overcrowd the vase; orchids need space to bloom.</p>
+                <p><b>How Long They Last:</b> Approximately 5-7 days.</p>
+            </div>
+        </div>
+
+        <!-- Flower Card: Mix of Roses -->
+        <div class="flower-card">
+            <img src="lot.jpg" alt="Mix of Roses">
+            <div class="flower-info">
+                <h2>Mix of Roses</h2>
+                <p><b>How to Care:</b> Place them in a cool area with flowing air and change the water every two days.</p>
+                <p><b>What Not to Do:</b> Avoid touching the petals as they bruise easily.</p>
+                <p><b>How Long They Last:</b> Around 7-14 days.</p>
+            </div>
+        </div>
+
+        <!-- Flower Card: Pink Roses -->
+        <div class="flower-card">
+            <img src="Pink Roses.jpg" alt="Pink Roses">
+            <div class="flower-info">
+                <h2>Pink Roses</h2>
+                <p><b>How to Care:</b> Keep the vase filled with water and change it frequently.</p>
+                <p><b>What Not to Do:</b> Don't keep them in overly hot rooms; they may wilt faster.</p>
+                <p><b>How Long They Last:</b> About 5-10 days.</p>
+            </div>
+        </div>
+
+        <!-- Flower Card: Orange Bunch Roses -->
+        <div class="flower-card">
+            <img src="Orange Bunch Roses.jpg" alt="Orange Bunch Roses">
+            <div class="flower-info">
+                <h2>Orange Bunch Roses</h2>
+                <p><b>How to Care:</b> Mist the leaves regularly and keep them in indirect sunlight. Use room-temperature water.</p>
+                <p><b>What Not to Do:</b> Do not let them sit in water for too long; it can promote rot.</p>
+                <p><b>How Long They Last:</b> 7-10 days.</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
+           
+
+      
+

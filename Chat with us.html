@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat with Us</title>
+    <style>
+        body {
+            font-family: serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f0f0f0;
+            padding: 20px;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        /* Header styling */
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        h1 {
+            color: #2F6A2F; /* Dark green color */
+            font-size: 36px;
+            margin-bottom: 5px;
+        }
+        .nav-links {
+            margin-top: 10px;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #2F6A2F;
+            font-size: 18px;
+            margin: 0 15px;
+        }
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+
+        .chat-container {
+            width: 100%;
+            max-width: 300px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            height: 500px;
+        }
+        .chat-box {
+            flex-grow: 1;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 10px;
+            background-color: #ffffff;
+            margin-bottom: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+        .message {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 10px;
+        }
+        .user-message {
+            background-color: #e1ffe1;
+            align-self: flex-end;
+            text-align: right;
+        }
+        .bot-message {
+            background-color: #f0f0f0;
+        }
+        form {
+            display: flex;
+        }
+        input[type="text"] {
+            flex: 1;
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            margin-right: 10px;
+        }
+        button {
+            background-color: #2F6A2F;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #265B26;
+        }
+        .contact-info {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .whatsapp-link {
+            text-decoration: none;
+            color: #25D366;
+            font-size: 16px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <h1>FLOWERS BY GRANT</h1>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="contact.html">Contact Us</a>
+        </div>
+    </header>
+
+    <!-- Chat Container -->
+    <div class="chat-container">
+        <div id="chat-box" class="chat-box"></div>
+        <form id="chat-form">
+            <input type="text" id="user-input" placeholder="Type your message..." required>
+            <button type="submit">Send</button>
+        </form>
+    </div>
+
+    <!-- Contact Information -->
+    <div class="contact-info">
+        <h3>Contact Us</h3>
+        <p>Phone: +27 123 456 789</p>
+        <p>Email: support@example.com</p>
+        <a href="https://wa.me/27123456789" class="whatsapp-link" target="_blank">Chat with us on WhatsApp</a>
+    </div>
+
+    <script>
+        const chatBox = document.getElementById('chat-box');
+        const chatForm = document.getElementById('chat-form');
+        const userInput = document.getElementById('user-input');
+
+        // Predefined Q&A
+        const faq = {
+            "what hampers are for sale?": "We have: Hamper with Wine, Hot Box: Champagne & Chocolate, Hot Box: Lina Rose & Champagne, and Hot Box: Rose & Lina Choca.",
+            "what flowers are for sale?": "We have: 100 Red Roses, 50 Red Roses, A Bright Surprise, and A Colourful Celebration.",
+            "how much is the starting price?": "Our prices range from R400 to R1,500.",
+            "do you deliver?": "Yes, we deliver in selected areas. Please contact us for more details.",
+            "what are your operating hours?": "We are open from 8 AM to 6 PM, Monday to Saturday.",
+            "how can I contact support?": "You can call us at +27 123 456 789 or email support@example.com."
+        };
+
+        // Function to add a message to the chat box
+        function addMessage(content, isUser) {
+            const messageElement = document.createElement('div');
+            messageElement.className = 'message ' + (isUser ? 'user-message' : 'bot-message');
+            messageElement.textContent = content;
+            chatBox.appendChild(messageElement);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        // Function to handle chatbot responses
+        function getBotResponse(userMessage) {
+            const message = userMessage.toLowerCase().trim();
+            return faq[message] || "I'm not sure about that. Please ask another question!";
+        }
+
+        // Handle form submission
+        chatForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const userMessage = userInput.value;
+            addMessage(userMessage, true);
+            userInput.value = '';
+
+            const botMessage = getBotResponse(userMessage);
+            addMessage(botMessage, false);
+        });
+    </script>
+</body>
+</html>

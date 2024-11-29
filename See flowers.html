@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flowers By Grant Donson - View Flowers</title>
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: serif;
+            background-color: #f9f9f9;
+            color: #013220;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body.dark-mode {
+            background-color: #121212;
+            color: #ffffff;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #013220;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #ffd700;
+        }
+
+        /* Header Styles */
+        header {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        header h1 {
+            color: #013220; /* Dark Green */
+            font-size: 2rem;
+        }
+
+        nav {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        /* Flower Cards Section */
+        section {
+            padding: 20px;
+            margin-top: 10px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        section h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .flower-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #fff;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        body.dark-mode .flower-card {
+            background-color: #1e1e1e;
+        }
+
+        .flower-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .flower-card img {
+            width: 100%;
+            max-width: 280px;
+            height: auto;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            transition: transform 0.3s;
+        }
+
+        .flower-card img:hover {
+            transform: scale(1.05);
+        }
+
+        .flower-info {
+            text-align: center;
+        }
+
+        .flower-info h3 {
+            margin-bottom: 10px;
+        }
+
+        .flower-info p {
+            margin-bottom: 15px;
+        }
+
+        button {
+            background-color: #013220;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: transform 0.3s, background-color 0.3s;
+            font-size: 0.9rem;
+        }
+
+        button:hover {
+            background-color: #026840;
+            transform: translateY(-5px);
+        }
+
+        .fab {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #ffd700;
+            color: #013220;
+            border: none;
+            border-radius: 50%;
+            padding: 15px;
+            font-size: 1.5rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .fab:hover {
+            transform: scale(1.1);
+        }
+
+        /* Dark Mode Toggle */
+        .dark-mode-toggle {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            background-color: #013220;
+            color: white;
+            padding: 8px;
+            border-radius: 50%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .see-virtually-button {
+            background-color: #ffd700;
+            color: #013220;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .see-virtually-button:hover {
+            background-color: #026840;
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header>
+        <h1>Flowers By Grant Donson</h1>
+        <!-- Navigation Links under Title -->
+        <nav>
+            <a href="index.html">Home</a> | 
+            <a href="Chat with us.html">Contact Us</a>
+        </nav>
+    </header>
+
+    <!-- Flower Viewing Section -->
+    <section id="viewFlowers">
+        <h2>Our Beautiful Flowers</h2>
+
+        <!-- Flower Cards -->
+        <div class="flower-card" onclick="goToOrder('Roses')">
+            <img src="p1.jpg" alt="Roses">
+            <div class="flower-info">
+                <h3>Roses</h3>
+                <p>Classic beauty and enchanting fragrance for expressing love.</p>
+                <button>Place Order</button>
+            </div>
+            <button class="see-virtually-button" onclick="goToAR('Roses')">See Virtually</button>
+        </div>
+
+        <div class="flower-card" onclick="goToOrder('Pink Orchid')">
+            <img src="p3.jpg" alt="Pink Orchid">
+            <div class="flower-info">
+                <h3>Pink Orchid</h3>
+                <p>Bright and cheerful, perfect for birthdays or special days.</p>
+                <button>Place Order</button>
+            </div>
+            <button class="see-virtually-button" onclick="goToAR('Pink Orchid')">See Virtually</button>
+        </div>
+
+        <div class="flower-card" onclick="goToOrder('White Orchid')">
+            <img src="lil.jpg" alt="White Orchid">
+            <div class="flower-info">
+                <h3>White Orchid</h3>
+                <p>Ideal for weddings and elegant celebrations.</p>
+                <button>Place Order</button>
+            </div>
+            <button class="see-virtually-button" onclick="goToAR('White Orchid')">See Virtually</button>
+        </div>
+
+        <div class="flower-card" onclick="goToOrder('A Colourful Celebration')">
+            <img src="lot.jpg" alt="A Colourful Celebration">
+            <div class="flower-info">
+                <h3>A Colourful Celebration</h3>
+                <p>A vibrant mix of seasonal flowers for joyous occasions.</p>
+                <button>Place Order</button>
+            </div>
+            <button class="see-virtually-button" onclick="goToAR('White Orchid')">See Virtually</button>
+        </div>
+    </section>
+
+    <!-- Floating Action Button -->
+    <button class="fab" onclick="window.location.href='Chat with us.html'">💬</button>
+
+    <!-- JavaScript -->
+    <script>
+        function goToOrder(flowerType) {
+            window.location.href = `order.html?flower=${encodeURIComponent(flowerType)}`;
+        }
+
+        function goToAR(flowerType) {
+            window.location.href = `ar.html?flower=${encodeURIComponent(flowerType)}`;
+        }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+    </script>
+</body>
+
+</html>

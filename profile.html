@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <style>
+        /* Updated Color Theme */
+        body {
+            font-family: serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #e0e4e2; /* Light grey background */
+            padding: 20px;
+            margin: 0;
+            height: 100vh;
+        }
+
+        h1 {
+            color: #004d40; /* Dark green title */
+            font-size: 2.5em;
+            margin: 10px 0;
+        }
+
+        .profile-container {
+            display: none;
+            width: 90%;
+            max-width: 500px;
+            background-color: #ffffff; /* White background */
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .profile-container img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+
+        .profile-container h2 {
+            color: #004d40; /* Dark green */
+        }
+
+        .profile-container p {
+            color: #666; /* Dark grey text */
+            margin: 8px 0;
+        }
+
+        .logout-button {
+            background-color: #004d40; /* Dark green */
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .logout-button:hover {
+            background-color: #00695c; /* Lighter green on hover */
+        }
+
+        .home-button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+            background-color: #004d40;
+            color: white;
+            border: none;
+            padding: 12px 18px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .home-button:hover {
+            background-color: #00695c;
+        }
+
+        .contact-links {
+            margin-top: 15px;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .contact-links a {
+            text-decoration: none;
+            color: #004d40;
+            font-weight: bold;
+        }
+
+        .contact-links a:hover {
+            text-decoration: underline;
+        }
+
+        .g_id_signin {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Title -->
+    <h1>Your Profile</h1>
+
+    <!-- Home Button and Contact Links -->
+    <div class="contact-links">
+        <button class="home-button" onclick="window.location.href='index.html'">Home</button>
+        <a href="Chat with us.html">Contact Us</a>
+        <a href="about.html">About Us</a>
+    </div>
+
+    <p>Sign in with your Google account to access your profile.</p>
+
+    <!-- Google Sign-In Button -->
+    <div id="g_id_onload"
+         data-client_id="YOUR_GOOGLE_CLIENT_ID"
+         data-callback="handleCredentialResponse"
+         data-auto_prompt="false">
+    </div>
+    <div class="g_id_signin" data-type="standard" data-size="large"></div>
+
+    <!-- Profile Container -->
+    <div id="profile-container" class="profile-container">
+        <img id="profile-pic" src="" alt="Profile Picture">
+        <h2 id="profile-name"></h2>
+        <p id="profile-email"></p>
+        <p id="profile-bio">🌼 Welcome to our flower shop! 🌸</p>
+        <button class="logout-button" onclick="signOut()">Log Out</button>
+    </div>
+
+    <script>
+        let userProfile = null;
+
+        // Function to handle Google Sign-In response
+        function handleCredentialResponse(response) {
+            const data = parseJwt(response.credential);
+            console.log("Google User Data:", data);
+
+            // Set profile information
+            document.getElementById('profile-pic').src = data.picture;
+            document.getElementById('profile-name').textContent = data.name;
+            document.getElementById('profile-email').textContent = data.email;
+
+            // Show the profile container
+            document.getElementById('profile-container').style.display = 'block';
+        }
+
+        // Function to parse JWT token
+        function parseJwt(token) {
+            const base64Url = token.split('.')[1];
+            const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+            const jsonPayload = decodeURIComponent(atob(base64).split('').map(function (c) {
+                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+            }).join(''));
+            return JSON.parse(jsonPayload);
+        }
+
+        // Function to handle sign out
+        function signOut() {
+            document.getElementById('profile-container').style.display = 'none';
+            alert("You have been signed out!");
+        }
+    </script>
+</body>
+
+</html>

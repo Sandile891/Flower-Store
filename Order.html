@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flowers By Grant Donson Order Page</title>
+    <style>
+        /* CSS Styling */
+        body {
+            font-family: serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+            color: #37432b;
+        }
+
+        header {
+            color: rgb(64, 102, 43);
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        header h1 {
+            font-size: 32px;
+            margin: 0;
+        }
+
+        header:hover {
+            background-color: #8aa886; /* Light green */
+        }
+
+        nav {
+            text-align: center;
+            margin-top: 10px;
+            background-color: #f4f4f4;
+            padding: 10px 0;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #37432b;
+            margin: 0 20px;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #a3fa97; /* Lighter green */
+        }
+
+        section {
+            padding: 30px;
+            margin: 30px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+            padding: 25px;
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            color: #37432b;
+        }
+
+        label {
+            font-size: 16px;
+            display: block;
+            margin-top: 12px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            margin-top: 8px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+        }
+
+        button {
+            background-color: #37432b; /* Dark green */
+            color: white;
+            border: none;
+            padding: 15px;
+            margin-top: 25px;
+            cursor: pointer;
+            border-radius: 8px;
+            width: 100%;
+            transition: background-color 0.3s ease;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #8aa886; /* Light green */
+        }
+
+        footer {
+            background-color: #37432b;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            font-size: 14px;
+        }
+
+        #map {
+            height: 300px;
+            width: 100%;
+            margin-top: 20px;
+            border-radius: 10px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .card {
+                padding: 20px;
+            }
+
+            button {
+                font-size: 14px;
+            }
+        }
+
+        /* Payment Details */
+        .payment-details {
+            display: none;
+            padding: 15px;
+            background-color: #f4f4f4;
+            border-radius: 8px;
+            margin-top: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .payment-details input {
+            width: 50%;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <h1>Flowers By Grant Donson</h1>
+    </header>
+
+    <!-- Navigation Links -->
+    <nav>
+        <a href="index.html">Home</a> |
+        <a href="Chat with us.html">Contact Us</a>
+    </nav>
+
+    <!-- Order Section -->
+    <section id="order">
+        <h2>Place Your Flower Order</h2>
+
+        <form id="orderForm">
+            <label for="product">Choose Product Type:</label>
+            <select id="product" name="product" onchange="updateOptions()">
+                <option value="">--Select Product--</option>
+                <option value="flowers">Flowers</option>
+                <option value="hampus">Hampus</option>
+            </select>
+            <br><br>
+
+            <div id="flower-options" style="display: none;">
+                <label for="flower">Flower Type:</label>
+                <select id="flower" name="flower">
+                    <option value="Roses">Roses</option>
+                    <option value="Pink Orchid">Pink Orchid</option>
+                    <option value="White Orchid">White Orchid</option>
+                    <option value="A Colourful Celebration">A Colourful Celebration</option>
+                </select>
+            </div>
+
+            <div id="hampus-options" style="display: none;">
+                <label for="hampus">Hampus Type:</label>
+                <select id="hampus" name="hampus">
+                    <option value="Classic Hampus">Classic Hampus</option>
+                    <option value="Luxury Hampus">Luxury Hampus</option>
+                    <option value="Premium Hampus">Premium Hampus</option>
+                </select>
+            </div>
+
+            <br><br>
+
+            <!-- Delivery Location Card -->
+            <label for="location">Delivery Location:</label>
+            <input type="text" id="location" placeholder="Enter Address" required>
+            <br><br>
+
+            <!-- Additional Address Details -->
+            <label for="address-line-2">Address Line 2 (Optional):</label>
+            <input type="text" id="address-line-2" placeholder="Apartment, Suite, etc.">
+            <br><br>
+
+            <label for="city">City:</label>
+            <input type="text" id="city" placeholder="Enter City" required>
+            <br><br>
+
+            <label for="postal-code">Postal Code:</label>
+            <input type="text" id="postal-code" placeholder="Enter Postal Code" required>
+            <br><br>
+
+            <!-- Contact Information -->
+            <label for="contact-number">Contact Number:</label>
+            <input type="tel" id="contact-number" placeholder="Enter Contact Number" required>
+            <br><br>
+
+            <!-- GPS Tracking Map -->
+            <div id="map"></div>
+
+            <!-- Payment Options Card -->
+            <div class="card">
+                <h3>Payment Options</h3>
+                <label for="paymentMethod">Select Payment Method:</label>
+                <select id="paymentMethod" required onchange="showPaymentDetails()">
+                    <option value="">--Select Payment Method--</option>
+                    <option value="visa">Visa</option>
+                    <option value="eft">EFT</option>
+                    <option value="paypal">PayPal</option>
+                </select>
+            </div>
+
+            <!-- Dynamic Payment Details Form -->
+            <div id="visaDetails" class="payment-details">
+                <label for="cardNumber">Card Number:</label>
+                <input type="text" id="cardNumber" placeholder="Enter Visa Card Number" required>
+
+                <label for="expiryDate">Expiry Date:</label>
+                <input type="month" id="expiryDate" required>
+
+                <label for="cvv">CVV:</label>
+                <input type="text" id="cvv" placeholder="Enter CVV" required>
+            </div>
+
+            <div id="paypalDetails" class="payment-details">
+                <label for="paypalEmail">PayPal Email:</label>
+                <input type="email" id="paypalEmail" placeholder="Enter PayPal Email" required>
+            </div>
+
+            <div id="eftDetails" class="payment-details">
+                <label for="bankName">Bank Name:</label>
+                <input type="text" id="bankName" placeholder="Enter Bank Name" required>
+
+                <label for="accountNumber">Account Number:</label>
+                <input type="text" id="accountNumber" placeholder="Enter Account Number" required>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit">Order Now</button>
+        </form>
+    </section>
+
+    <!-- JavaScript for Handling Dynamic Options and Payment Details -->
+    <script>
+        function updateOptions() {
+            const productType = document.getElementById('product').value;
+            const flowerOptions = document.getElementById('flower-options');
+            const hampusOptions = document.getElementById('hampus-options');
+
+            // Hide both options initially
+            flowerOptions.style.display = 'none';
+            hampusOptions.style.display = 'none';
+
+            // Show the relevant options based on the selected product
+            if (productType === 'flowers') {
+                flowerOptions.style.display = 'block';
+            } else if (productType === 'hampus') {
+                hampusOptions.style.display = 'block';
+            }
+        }
+
+        function showPaymentDetails() {
+            const paymentMethod = document.getElementById('paymentMethod').value;
+
+            // Hide all payment details first
+            document.getElementById('visaDetails').style.display = 'none';
+            document.getElementById('paypalDetails').style.display = 'none';
+            document.getElementById('eftDetails').style.display = 'none';
+
+            // Show the relevant payment details
+            if (paymentMethod === 'visa') {
+                document.getElementById('visaDetails').style.display = 'block';
+            } else if (paymentMethod === 'paypal') {
+                document.getElementById('paypalDetails').style.display = 'block';
+            } else if (paymentMethod === 'eft') {
+                document.getElementById('eftDetails').style.display = 'block';
+            }
+        }
+
+        // Automatically select a product type (e.g., 'flowers')
+        window.onload = function() {
+            document.getElementById('product').value = 'flowers'; // Automatically select 'flowers'
+            updateOptions();
+        };
+    </script>
+</body>
+</html>
+
+
+

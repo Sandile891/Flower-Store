@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flowers by Grant</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="java.js" defer></script>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <img src="logo.jpg" alt="Logo" class="logo">
+        <div class="header-content">
+            <h1>Flowers by Grant</h1>
+            <!-- Navigation links under the heading -->
+            <nav class="top-links">
+                <a href="Hampus.html">Hampus</a>
+                <a href="quiz.html">Quiz</a>
+                <a href="See flowers.html">Flowers</a>
+                <a href="Recycle.html">Virtual Flowers</a>
+            </nav>
+        </div>
+        <div class="profile" onclick="goToProfile()">
+        <a href="Profile.html">
+        <img src="https://img.icons8.com/ios-glyphs/24/004d28/user.png" alt="Profile Icon" style="filter: brightness(0) invert(1);">
+        </a>
+        </div> 
+    </header>
+
+    <head>
+        <style>
+            /* Elegant Welcome Styling */
+            body {
+                margin: 0;
+                font-family: "Georgia", serif;
+                background: #f4f4f9;
+                color: #333;
+            }
+    
+            .welcome-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
+    
+            .welcome-note {
+                text-align: center;
+                background: #ffffff;
+                padding: 30px;
+                border-radius: 15px;
+                width: 90%;
+                max-width: 600px;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            }
+    
+            .welcome-note h2 {
+                font-size: 2.5rem;
+                color: #003366; /* Elegant static blue color */
+                margin-bottom: 15px;
+                font-weight: 600;
+                text-shadow: none; /* Ensure no glowing or shadow effects */
+            }
+    
+            .welcome-note p {
+                font-size: 1.2rem;
+                line-height: 1.8;
+                color: #555;
+                margin: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Dynamic Greeting Section >
+        <div class="welcome-container">
+            <section class="welcome-note">
+                <h2 id="greeting">Welcome!</h2>
+                <p>Immerse yourself in a world of timeless elegance. Discover curated collections, explore your floral style, and send heartfelt gestures with ease.</p>
+            </section>
+        </div-->
+    
+        <script>
+            // Dynamic Greeting based on the time of day
+            document.addEventListener('DOMContentLoaded', () => {
+                const greetingElement = document.getElementById('greeting');
+    
+                if (!greetingElement) {
+                    console.error("Element with id 'greeting' not found.");
+                    return;
+                }
+    
+                const hour = new Date().getHours();
+                let greetingMessage;
+    
+                if (hour < 12) {
+                    greetingMessage = "Good Morning! Start your day with beauty.";
+                } else if (hour < 18) {
+                    greetingMessage = "Good Afternoon! Discover floral inspirations.";
+                } else {
+                    greetingMessage = "Good Evening! Unwind with timeless elegance.";
+                }
+    
+                greetingElement.textContent = greetingMessage;
+            });
+        </script>
+    </body>
+    </html>
+    
+
+
+<body>
+    <!-- Section Heading -->
+    <section>
+        <h2 style="text-align: center; font-family:serif; font-size: 24px; color: #333; margin-bottom: 10px;">
+            Buy Flowers According to Your Occasion 
+        </h2>
+    </section>
+
+    <!-- Scrollable Navigation for Flower Occasions -->
+    <div class="scroll-container">
+        <button class="scroll-arrow left">&lt;</button>
+        <nav class="nav-links">
+            <a href="#" class="occasion-link birthday">🎂 Birthday</a>
+            <a href="#" class="occasion-link romance">💖 Romance</a>
+            <a href="#" class="occasion-link newborn">👶 Newborn</a>
+            <a href="#" class="occasion-link graduation">🎓 Graduation</a>
+            <a href="See flowers.html" class="occasion-link view-all">🌺 View All</a>
+        </nav>
+        <button class="scroll-arrow right">&gt;</button>
+    </div>
+
+    <style>
+        /* Scrollable Navigation Container */
+        .scroll-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Scrollable Nav Links */
+        .nav-links {
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            scrollbar-width: none; /* Hide scrollbar in Firefox */
+            padding: 10px 0;
+            gap: 10px;
+        }
+
+        .nav-links::-webkit-scrollbar {
+            display: none; /* Hide scrollbar in Chrome, Safari, Edge */
+        }
+
+        /* Occasion Links */
+        .occasion-link {
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 30px;
+            white-space: nowrap;
+            font-size: 14px;
+            font-weight: bold;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        /* Background colors for different occasions */
+        .birthday {
+            background-color: #ff6f61;
+        }
+
+        .romance {
+            background-color: #ff4081;
+        }
+
+        .newborn {
+            background-color: #42a5f5;
+        }
+
+        .graduation {
+            background-color: #66bb6a;
+        }
+
+        .view-all {
+            background-color: #ffca28;
+        }
+
+        /* Hover Effect for Occasion Links */
+        .occasion-link:hover {
+            transform: scale(1.1);
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Scroll Arrows */
+        .scroll-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1;
+        }
+
+        .scroll-arrow.left {
+            left: -10px;
+            display: none; /* Initially hidden */
+        }
+
+        .scroll-arrow.right {
+            right: -10px;
+        }
+    </style>
+
+    <script>
+        const navLinks = document.querySelector('.nav-links');
+        const leftArrow = document.querySelector('.scroll-arrow.left');
+        const rightArrow = document.querySelector('.scroll-arrow.right');
+
+        const updateArrows = () => {
+            const scrollLeft = navLinks.scrollLeft;
+            const scrollWidth = navLinks.scrollWidth;
+            const clientWidth = navLinks.clientWidth;
+
+            leftArrow.style.display = scrollLeft > 0 ? 'flex' : 'none';
+            rightArrow.style.display = scrollLeft + clientWidth < scrollWidth ? 'flex' : 'none';
+        };
+
+        // Scroll left or right
+        const scrollNav = (direction) => {
+            const scrollAmount = 150; // Adjust scroll amount as needed
+            navLinks.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+        };
+
+        // Event listeners for scrolling
+        leftArrow.addEventListener('click', () => scrollNav(-1));
+        rightArrow.addEventListener('click', () => scrollNav(1));
+        navLinks.addEventListener('scroll', updateArrows);
+
+        // Initial arrow visibility check
+        updateArrows();
+    </script>
+</body>
+
+<br></br>
+
+    <!-- Main Content -->
+    <main>
+        <div class="popular-cards">
+            <div class="product-card">
+                <img src="lot.jpg" alt="Product 1">
+                <div class="title">Amarula Hamper</div>
+                <div class="description">A sweet surprise.</div>
+            </div>
+            <div class="product-card">
+                <img src="b2.jpg" alt="Product 2">
+                <div class="title">Fresh Fruit Hamper
+                </div>
+                <div class="description">A mix of fresh fruit, pack of 3 Ferrero Rocher chocolates and a 1L Appletiser.</div>
+            </div>
+            <div class="product-card">
+                <img src="p3.jpg" alt="Product 3">
+                <div class="title">Lindor & Lindt Wine Box</div>
+                <div class="description">White wine and a mix of Lindor and Lindt chocolate</div>
+            </div>
+            <div class="product-card">
+                <img src="p7.jpg" alt="Product 4">
+                <div class="title">The Goodie Bag</div>
+                <div class="description">A scrumptious mix of goodies anyone would enjoy!</div>
+            </div>
+            <!-- Add more cards here -->
+        </div> 
+    </main>
+        </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-icon" onclick="location.href='Track.html'">
+            📍<span>Track</span>
+        </div>
+        <div class="footer-icon" onclick="location.href='Tips.html'">
+            💡<span>Tips</span>
+        </div>
+        <div class="footer-icon-large" onclick="location.href='Order.html'">
+        🛒<span>Order</span>
+        </div>
+        <style>
+        .footer-icon-large {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            text-align: center;
+            padding: 5px;
+        }
+
+        .footer-icon-large span {
+            font-size: 1rem; /* Text size for "Order" */
+            color: #fff;
+            margin-top: 1px;  /*Space between the icon and text */
+        }
+        </style>
+        <div class="footer-icon" onclick="location.href='Chat with us.html'">
+            💬<span>Contact Us</span>
+        </div>
+        <div class="footer-icon" onclick="location.href='ar.html'">
+            🔍<span>Scan QR</span>
+        </div>
+    </footer>
+</body>
+
+</html>

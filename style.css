@@ -1,0 +1,439 @@
+body {
+    font-family: serif;
+    margin: 0 auto;
+    padding: 2px;
+    background: url('bg.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #000000;
+    line-height: 1.6;
+    max-width: 100%;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+/* Header layout: Logo on the left and Profile on the right */
+header {
+    display: flex;
+    align-items: center;
+    background: url('header.jpg') no-repeat center center;
+    background-size: cover;
+    padding: 20px;
+    border-radius: 8px;
+    color: #ffffff;
+    width: 95%;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+
+/* Logo Styling */
+.logo {
+    width: 50px; /* Adjust size as needed */
+    height: 50px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: auto; /* Pushes logo to the left */
+}
+
+.profile {
+    position: absolute;
+    top: 10px;
+    right: 15px; /* Aligns the image to the right side */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    color: white;
+}
+
+
+.header-overlay {
+    position: absolute;
+    top: 0;
+    left: 15;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay for readability */
+    border-radius: 8px;
+}
+
+.header-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    right: 15px;
+    margin-bottom: 10px; /* Space between title and links */
+}
+
+h1 {
+    font-size: 22px;
+    margin: 0;
+    position: relative;
+    top: -10px; /* Moves the heading up */
+}
+
+
+
+.top-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Add space between links */
+    margin-top: 10px;
+    overflow-x: auto; /* Allow horizontal scrolling if needed */
+    white-space: nowrap;
+    position: relative;
+    top: -10px;
+}
+
+.top-links a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.top-links a:hover {
+    color: #c7e2b5;
+}
+
+/* Main Content Styling */
+.main-content {
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background for better readability */
+    padding: 10px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+}
+
+h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* Navigation for Occasions */
+.nav-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    overflow-x: auto;
+    margin: 10px 5px;
+    position: relative;
+}
+
+.nav-links a {
+    padding: 6px 6px;
+    background-color: #e9e9e9;
+    border-radius: 20px;
+    color: #37432b;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-links a:hover {
+    background-color: #c7e2b5;
+}
+
+/* Popular Products Section */
+.popular-cards {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 1px;
+}
+
+.product-card {
+    flex: 0 0 120px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+.product-card img {
+    width: 100%;
+    height: 90px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.product-card .title {
+    font-weight: bold;
+    margin-top: 8px;
+}
+
+.product-card .description {
+    font-size: 14px;
+    color: #666;
+    margin: 5px 0;
+}
+
+.product-card .price {
+    color: #2f3d1e;
+    font-weight: bold;
+    margin-top: 6px;
+}
+
+/* Best Sellers Section */
+.best-seller-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0 10px;
+}
+
+.view-all-btn {
+    background-color: #5b8c5a;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.view-all-btn:hover {
+    background-color: #3e6139;
+}
+
+.best-seller-cards {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto; /* Make the best sellers section scrollable */
+    padding-bottom: 20px;
+}
+
+.seller-card {
+    flex: 0 0 120px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.seller-card img {
+    width: 100%;
+    height: 90px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.seller-card .title {
+    font-weight: bold;
+    margin-top: 8px;
+}
+
+.seller-card .price {
+    color: #37432b;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+/* Footer Styling */
+footer {
+    display: flex;
+    justify-content: center; /* Center the icons */
+    align-items: center;
+    background-color: #2f3d1e;
+    padding: 1px;
+    border-radius: 15px 15px 0 0;
+    gap: 20px;
+}
+
+.footer-icons {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.footer-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 16px; /* Decreased size */
+    color: white;
+    cursor: pointer;
+    /*transition: transform 2.10s ease;*/
+}
+
+.footer-icon-large {
+    font-size: 30px; /* Larger size order icon */
+}
+
+.footer-icon span {
+    font-size: 12px;
+    margin-top: 1px;
+}
+
+/* Header: Align Profile and Logo */
+header {
+    display: flex;
+    justify-content: space-between;  /* Logo on left, profile on right */
+    align-items: center;
+    padding: 20px;
+}
+
+header img.logo {
+    width: 40px;  /* Logo size */
+    height: 40px; /* Logo size */
+    object-fit: contain;
+    color: white;
+}
+
+header img.profile {
+    width: 40px;  /* Profile image size */
+    height: 40px; /* Profile image size */
+    object-fit: contain;
+    color: white;
+}
+
+/* Media Queries for Smaller Devices */
+
+/* For Mobile Devices */
+@media screen and (max-width: 1168px) {
+    body {
+        padding: 10px;
+    }
+
+    header {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .header-content {
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 20px;
+        margin: 0 10px;
+    }
+
+    .profile-go-icons {
+        position: relative;
+        top: auto;
+        left: auto;
+        right: auto;
+        justify-content: space-between;
+        color: white;
+
+    }
+
+    .top-links {
+        flex-direction: row; /* Ensure horizontal layout for links */
+        justify-content: center;
+        gap: 15px;
+        margin-top: 10px;
+    }
+
+    .nav-links {
+        flex-direction: row; /* Ensure horizontal layout for occasion buttons */
+        gap: 10px;
+    }
+
+    .product-card, .seller-card {
+        flex: 0 0 120px;
+    }
+
+    footer {
+        bottom: 0;
+        width: 100%;
+    }
+}
+
+/* For Small Screens */
+@media screen and (max-width: 480px) {
+    h1 {
+        font-size: 18px;
+    }
+
+    .top-links, .nav-links {
+        gap: 10px;
+    }
+}
+ /* Popular Products Section */
+.popular-cards {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding-bottom: 20px;
+    position: relative;
+    padding-top: 20px;
+}
+
+/* Modern Product Card Styling */
+.product-card {
+    flex: 0 0 250px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    padding: 35px;
+    text-align: center;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transform: translateY(-10px);
+
+}
+
+.product-card:hover {
+    transform: translateY(-8px); /* Lift effect */
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+}
+
+/* Card Image Styling */
+.product-card img {
+    width: 100%;
+    height: 180px;
+    border-radius: 12px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+/* Hover effect for the image */
+.product-card:hover img {
+    transform: scale(1.1); /* Slight zoom effect */
+}
+
+/* Card Title */
+.product-card .title {
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 10px;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+/* Card Description */
+.product-card .description {
+    font-size: 14px;
+    color: #777;
+    margin: 8px 0;
+    font-weight: 300;
+}
+
+/* Card Price */
+.product-card .price {
+    color: #2f3d1e;
+    font-weight: 600;
+    font-size: 16px;
+    margin-top: 12px;
+}
+
+.popular-cards::after:hover {
+    color: #5b8c5a;
+}
+
+

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scan your Package</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: serif;
+            background-color: #e0e5ec;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            padding: 10px;
+        }
+
+        .title {
+            text-align: center;
+            color: #004d28;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .navigation-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .navigation-links a {
+            color: #004d28;
+            font-weight: bold;
+            text-decoration: none;
+            padding: 5px 10px;
+            border: 2px solid #004d28;
+            border-radius: 8px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .navigation-links a:hover {
+            background-color: #004d28;
+            color: white;
+        }
+
+        #qr-reader {
+            width: 100%;
+            max-width: 400px;
+            height: 250px;
+            background-color: #fff;
+            border: 3px solid #4d8050;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .video-container {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .video-container video {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            border: none;
+            background-color: #004d28;
+            color: white;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        button:hover {
+            background-color: #006c3d;
+        }
+
+        button:disabled {
+            background-color: #999;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="title">Flowers By Grant Donson</div>
+    </header>
+
+    <div class="navigation-links">
+        <a href="index.html">Home</a>
+        <a href="Chat with us.html">Contact Us</a>
+    </div>
+
+    <h2 style="color: #004d28; text-align: center;">Scan your package 📦 QR Code to see the special message!</h2>
+
+    <!- QR Code Scanner >
+    <div id="qr-reader"></div>
+
+    <!-- Buttons to control the scanner -->
+    <button id="start-btn">Start Scanning</button>
+    <button id="stop-btn" disabled>Stop Scanning</button>
+
+    <!-- Video Player -->
+    <div class="video-container" id="video-container">
+        <h3>Your Special Message 🎥</h3>
+        <video id="message-video" controls></video>
+        <button onclick="goHome()">Go Home</button>
+    </div>
+
+    <!-- Include the HTML5 QR Code Scanner Library -->
+    <script src="html5-qrcode.min.js.js"></script>
+
+    <script>
+        let qrCodeScanner = null;
+        const videoContainer = document.getElementById('video-container');
+        const videoElement = document.getElementById('message-video');
+        const startBtn = document.getElementById('start-btn');
+        const stopBtn = document.getElementById('stop-btn');
+
+        // Function to handle successful scan
+        function onScanSuccess(decodedText) {
+            stopScanning(); // Stop the scanner after successful scan
+
+            // Display the video player with the scanned video URL
+            videoContainer.style.display = 'flex';
+            videoElement.src = decodedText;
+            videoElement.load();
+            videoElement.play();
+        }
+
+        function onScanError(errorMessage) {
+            console.error('QR Code scan error:', errorMessage);
+        }
+
+        // Start the scanner
+        async function startScanning() {
+            if (!qrCodeScanner) {
+                qrCodeScanner = new Html5Qrcode("qr-reader");
+            }
+
+            try {
+                await qrCodeScanner.start(
+                    { facingMode: "environment" },
+                    { fps: 10, qrbox: 250 },
+                    onScanSuccess,
+                    onScanError
+                );
+                startBtn.disabled = true;
+                stopBtn.disabled = false;
+            } catch (error) {
+                console.error('Error starting the scanner:', error);
+            }
+        }
+
+        // Stop the scanner
+        async function stopScanning() {
+            if (qrCodeScanner) {
+                try {
+                    await qrCodeScanner.stop();
+                    await qrCodeScanner.clear();
+                } catch (error) {
+                    console.error('Error stopping the scanner:', error);
+                }
+            }
+            qrCodeScanner = null;
+            startBtn.disabled = false;
+            stopBtn.disabled = true;
+        }
+
+        // Event listeners for buttons
+        startBtn.addEventListener('click', startScanning);
+        stopBtn.addEventListener('click', stopScanning);
+
+        // Function to go back to the home page
+        function goHome() {
+            window.location.href = "index.html";
+        }
+    </script>
+
+    <footer>
+        &copy; 2024 By Grant Donson. All rights reserved.
+    </footer>
+</body>
+</html>
+

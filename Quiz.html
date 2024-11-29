@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flower Quiz</title>
+    <style>
+        body {
+            font-family: serif;
+            background-color: #f5f5f5;
+            color: #1b3b2f;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin: 0;
+        }
+        .nav-links {
+            margin-top: 10px;
+        }
+        .nav-links a {
+            color: rgb(39, 73, 47);
+            margin: 0 10px;
+            text-decoration: none;
+            font-size: 1.2em;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: #4caf50;
+        }
+        .container {
+            background-color: #e9ecef;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+        button {
+            background-color: #1b3b2f;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 12px;
+            cursor: pointer;
+            margin: 10px 5px;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+        button:hover {
+            background-color: #104024;
+            transform: translateY(-2px);
+        }
+        .quiz-screen, .result-screen {
+            display: none;
+        }
+        .progress-bar {
+            background-color: #dcdcdc;
+            border-radius: 10px;
+            height: 20px;
+            margin: 15px 0;
+            width: 100%;
+        }
+        .progress {
+            background-color: #1b3b2f;
+            height: 100%;
+            width: 0%;
+            border-radius: 10px;
+            transition: width 0.4s ease;
+        }
+        .question-options button {
+            background-color: #4caf50;
+            color: #fff;
+            margin-top: 10px;
+        }
+        #flower-image {
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        .fab {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #ffd700;
+            color: #013220;
+            border: none;
+            border-radius: 50%;
+            padding: 15px;
+            font-size: 1.5rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .fab:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <h1>Flower Quiz</h1>
+        <div class="nav-links">
+            <a href="index.html">Home</a> |
+            <a href="contact.html">Contact Us</a>
+        </div>
+    </header>
+
+    <br></br>
+
+    <!-- Container -->
+    <div class="container">
+        <h1>Find Your Perfect Flower Arrangement </h1>
+
+        <!-- Progress Bar -->
+        <div class="progress-bar">
+            <div id="progress" class="progress"></div>
+        </div>
+
+        <!-- Start Screen -->
+        <div id="start-screen">
+            <h2>Who is this arrangement for?</h2>
+            <button onclick="startQuiz('self')">For Me</button>
+            <button onclick="startQuiz('someone')">For Someone Else</button>
+        </div>
+
+        <!-- Quiz Screen -->
+        <div id="quiz-screen" class="quiz-screen">
+            <h2 id="question"></h2>
+            <div id="options" class="question-options"></div>
+        </div>
+
+        <!-- Result Screen -->
+        <div id="result-screen" class="result-screen">
+            <h2>Your Perfect Arrangement</h2>
+            <p id="result-text"></p>
+            <img id="flower-image" src="" alt="Flower Arrangement" width="80%">
+            <button onclick="resetQuiz()">Try Again</button>
+            <button id="order-now" onclick="orderNow()">Order Now</button>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "Pick a color you are drawn to:",
+                options: ["Red 🌹", "Pink 🌸", "Yellow 🌻", "White 🕊️"],
+                answers: ["roses.jpg", "p1.jpg", "P2.jpg", "p3.jpg"]
+            },
+            {
+                question: "What's the occasion?",
+                options: ["Birthday 🎂", "Anniversary ❤️", "Wedding 💍", "Just Because 😊"],
+                answers: ["b1.jpg", "b2.jpg", "b3.jpg", "b4.jpg"]
+            },
+            {
+                question: "How would you like the flowers to make you feel?",
+                options: ["Romantic 💖", "Joyful 😄", "Calm 🌿", "Excited 🎉"],
+                answers: ["r1.jpg", "r2.jpg", "r3.jpg", "r4.jpg"]
+            }
+        ];
+
+        let currentQuestionIndex = 0;
+        let selectedCategory = '';
+        let selectedImage = '';
+        let selectedProduct = ''; // Variable to store the selected product
+
+        function startQuiz(category) {
+            selectedCategory = category;
+            document.getElementById('start-screen').style.display = 'none';
+            document.getElementById('quiz-screen').style.display = 'block';
+            updateProgress();
+            displayQuestion();
+        }
+
+        function displayQuestion() {
+            const questionElement = document.getElementById('question');
+            const optionsContainer = document.getElementById('options');
+            questionElement.textContent = questions[currentQuestionIndex].question;
+            optionsContainer.innerHTML = '';
+
+            questions[currentQuestionIndex].options.forEach((option, index) => {
+                const button = document.createElement('button');
+                button.textContent = option;
+                button.onclick = () => handleAnswer(index);
+                optionsContainer.appendChild(button);
+            });
+        }
+
+        function handleAnswer(index) {
+            selectedImage = questions[currentQuestionIndex].answers[index];
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                updateProgress();
+                displayQuestion();
+            } else {
+                showResult();
+            }
+        }
+
+        function updateProgress() {
+            const progressElement = document.getElementById('progress');
+            const progressPercentage = ((currentQuestionIndex + 1) / questions.length) * 100;
+            progressElement.style.width = `${progressPercentage}%`;
+        }
+
+        function showResult() {
+            document.getElementById('quiz-screen').style.display = 'none';
+            const resultScreen = document.getElementById('result-screen');
+            resultScreen.style.display = 'block';
+
+            const resultText = selectedCategory === 'self'
+                ? "This flower arrangement suits your taste perfectly!"
+                : "This flower arrangement is perfect for the recipient!";
+            
+            document.getElementById('result-text').textContent = resultText;
+            document.getElementById('flower-image').src = selectedImage;
+
+            // Determine the selected product based on the answers
+            selectedProduct = selectedCategory === 'self' ? "flower" : "hampus"; // Example: Set to 'flower' or 'hampus' based on logic
+        }
+
+        function resetQuiz() {
+            currentQuestionIndex = 0;
+            document.getElementById('result-screen').style.display = 'none';
+            document.getElementById('start-screen').style.display = 'block';
+            updateProgress();
+        }
+
+        function orderNow() {
+            // Redirect to order page with the selected product
+            window.location.href = `Order.html?product=${selectedProduct}`;
+        }
+    </script>
+
+ <!-- Floating Action Button -->
+ <button class="fab" onclick="window.location.href='Chat with us.html'">💬</button>
+
+
+</body>
+</html>
+
+

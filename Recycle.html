@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flowers By Grant Donson - AR Try-On</title>
+    <!-- A-Frame and AR.js Libraries -->
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aframe-gesture-detector@5.0.0/dist/aframe-gesture-detector.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.js"></script>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: serif;
+            background-color: #fff6ff;
+        }
+
+        #ar-container {
+            display: block;
+            position: relative;
+            width: 100%;
+            height: 100vh;
+        }
+
+        a-scene {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- AR Container -->
+    <div id="ar-container">
+        <a-scene embedded arjs="sourceType: webcam; debugUIEnabled: false;">
+            <a-assets>
+                <!-- Load your 3D flower model -->
+                <a-asset-item id="flowerModel" src="htt (2).glb"></a-asset-item>
+            </a-assets>
+
+            <a-light type="directional" position="4 4 4"></a-light>
+            <a-light type="ambient" color="#ffffff"></a-light>
+
+            <!-- 3D Model -->
+            <a-entity id="flower-container" position="0 1 -6" scale="0.4 0.4 0.4" gesture-detector>
+                <a-entity gltf-model="#flowerModel" scale="1 1 1"></a-entity>
+            </a-entity>
+
+            <!-- Camera -->
+            <a-camera gps-camera look-controls="pointerLockEnabled: false; touchEnabled: true; keyboardEnabled: true;">
+            </a-camera>
+        </a-scene>
+    </div>
+
+    <script>
+        const flowerContainer = document.getElementById('flower-container');
+
+        // Handle gesture events for rotation
+        flowerContainer.addEventListener('gesturemove', (event) => {
+            const { detail } = event;
+
+            // Rotate the model based on gesture movement
+            if (detail.type === 'rotate') {
+                flowerContainer.object3D.rotation.y -= detail.rotationChange / 100; // Horizontal rotation
+            } else if (detail.type === 'pinch' || detail.type === 'scale') {
+                flowerContainer.object3D.rotation.x += detail.rotationChange / 100; // Vertical rotation
+            }
+        });
+
+        // Add fallback keyboard controls for rotation
+        document.addEventListener('keydown', (event) => {
+            const rotationStep = 5; // Degrees to rotate per key press
+
+            switch (event.key) {
+                case 'ArrowLeft': // Rotate left
+                    flowerContainer.object3D.rotation.y -= THREE.Math.degToRad(rotationStep);
+                    break;
+                case 'ArrowRight': // Rotate right
+                    flowerContainer.object3D.rotation.y += THREE.Math.degToRad(rotationStep);
+                    break;
+                case 'ArrowUp': // Rotate up
+                    flowerContainer.object3D.rotation.x -= THREE.Math.degToRad(rotationStep);
+                    break;
+                case 'ArrowDown': // Rotate down
+                    flowerContainer.object3D.rotation.x += THREE.Math.degToRad(rotationStep);
+                    break;
+            }
+        });
+    </script>
+</body>
+</html>
+

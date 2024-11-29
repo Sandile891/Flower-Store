@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flowers by Grant - Package Tracking</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: serif;
+            background-color: #f5f5f5;
+            color: #333;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        /* Header Section */
+        h1 {
+            color: #004d40;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .navigation-links {
+            margin-bottom: 30px;
+        }
+
+        .navigation-links a {
+            text-decoration: none;
+            color: #004d40;
+            font-size: 1.2rem;
+            margin: 0 15px;
+            transition: color 0.3s ease;
+        }
+
+        .navigation-links a:hover {
+            color: #2e7d32;
+            font-weight: bold;
+        }
+
+        /* Tracking Container */
+        .tracking-container {
+            background-color: #e0f2f1;
+            border-radius: 12px;
+            padding: 30px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .tracking-container h2 {
+            color: #004d40;
+            margin-bottom: 25px;
+            font-size: 1.8rem;
+        }
+
+        .progress-bar {
+            background-color: #cfd8dc;
+            border-radius: 20px;
+            height: 25px;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 25px;
+        }
+
+        .progress-fill {
+            background-color: #2e7d32;
+            height: 100%;
+            width: 0;
+            border-radius: 20px;
+            transition: width 0.6s ease-in-out;
+        }
+
+        .status-message {
+            font-size: 1.2rem;
+            margin-top: 20px;
+            color: #004d40;
+        }
+
+        /* Notification Pop-up */
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #004d40;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            display: none;
+            animation: slideIn 0.5s forwards;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .notification button {
+            background-color: white;
+            color: #004d40;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-left: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .notification button:hover {
+            background-color: #f5f5f5;
+        }
+
+        /* Mobile Styling */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .tracking-container {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <h1>Flowers by Grant</h1>
+    <div class="navigation-links">
+        <a href="index.html">Home</a>
+        <a href="Chat with us.html">Contact Us</a>
+    </div>
+
+    <!-- Tracking Container -->
+    <div class="tracking-container">
+        <h2>Track Your Flower Delivery</h2>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <p class="status-message" id="statusMessage">Your package is on its way!</p>
+        <button onclick="updateTracking()">Update Status</button>
+    </div>
+
+    <!-- Notification Pop-up -->
+    <div class="notification" id="notification">
+        🎉 Hooray! Your flowers have arrived! 🌸
+        <button onclick="closeNotification()">Close</button>
+    </div>
+
+    <script>
+        // JavaScript for Tracking Progress
+        let progress = 0;
+        const progressFill = document.getElementById('progressFill');
+        const statusMessage = document.getElementById('statusMessage');
+        const notification = document.getElementById('notification');
+
+        function updateTracking() {
+            if (progress < 100) {
+                progress += 25;
+                progressFill.style.width = progress + '%';
+
+                if (progress === 25) {
+                    statusMessage.textContent = "Your package is being prepared!";
+                } else if (progress === 50) {
+                    statusMessage.textContent = "Your package is on the way!";
+                } else if (progress === 75) {
+                    statusMessage.textContent = "Almost there...";
+                } else if (progress === 100) {
+                    statusMessage.textContent = "Package delivered!";
+                    showNotification();
+                }
+            }
+        }
+
+        // Show Notification
+        function showNotification() {
+            notification.style.display = 'block';
+        }
+
+        // Close Notification
+        function closeNotification() {
+            notification.style.display = 'none';
+        }
+    </script>
+</body>
+
+</html>
